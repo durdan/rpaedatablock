@@ -1,0 +1,216 @@
+
+
+entity OrganizationsDetails{
+      organizationName String,
+      description String,
+      organisationAddress String,
+      organisationEmail String,
+      isActive Integer,
+      emailServerHost String,
+      emailServerPort Integer,
+      emailServerUserId String,
+      emailServerPassword String,
+      isEmailServerAccessAllowed Integer,
+      createDate Instant,
+      createdBy String,
+      updateDate Instant,
+      updatedBy String
+
+}
+
+entity OrgEmailConfig{
+	  emailServerHost String,
+      emailServerPort Integer,
+      emailServerUserId String,
+      emailServerPassword String
+      createDate Instant,
+      createdBy String,
+      updateDate Instant,
+      updatedBy String
+}
+
+entity Client{
+      clientName String,
+      description String,
+      clientAddress String,
+      clientContactEmailAddress String,
+      isActive Integer,
+      createDate Instant,
+      createdBy String,
+      updateDate Instant,
+      updatedBy String
+}
+
+entity ClientEmailList {
+	emailAddress String,
+    description String,
+    isActive Integer
+}
+
+entity TemplateDetails {
+    templateName String,
+    templateDescription String,
+    templateType String,
+    isActive Integer,
+    createDate Instant,
+    createdBy String,
+    updateDate Instant,
+    updatedBy String
+}
+
+
+entity TemplateFields {
+      fieldName String,
+      fieldZoneMinX Double,
+      fieldZoneMinY Double,
+      fieldZoneMaxX Double,
+      fieldZoneMaxY Double,
+      fieldValidationRequire Integer,
+      fieldValidationRule String, //Regex expression
+      fieldLocation Integer //
+}
+
+
+entity EmailProcessing{
+    messageId String,
+    receiveFrom String,//email
+    receivedTime Instant,
+    numberOfAttachments String //comma separated list
+}
+
+entity EmailAttachment{
+      fileName String,
+      fileExtension String,
+      fileLocation String
+}
+
+entity EmailProcessingError{
+      errorMessage String,
+      messageID String,
+      receiveFrom String,
+      receivedTime Instant
+}
+
+entity UploadFiles{
+    fileName String,
+    fileExtension String
+    uploadBy String,
+    uploadDateTime Instant,
+    uploadLocation String
+}
+
+
+
+entity FileForOCRProcessing {
+    fileInputType String, //Email or upload
+    status String,
+    retry String,
+    createdDateTime Instant,
+    createdBy String,
+    updateTimeStamp Instant,
+    updateBy Instant
+
+}
+
+
+entity Transaction {
+    createdDateTime Instant,
+    status String,
+    processType String,
+    createDate Instant,
+    createdBy String,
+    updateDate Instant,
+    updatedBy String
+}
+
+entity OcrProcessingError {
+	  errorMessage String,
+      createdDateTime Instant,
+      errorType String
+}
+
+entity ClientDataOcr {
+  	keyName String,
+    value String
+}
+
+
+
+
+//RelationShip
+ relationship ManyToOne {
+	OrgEmailConfig{client} to OrganizationsDetails
+}
+
+relationship OneToOne {
+	TemplateDetails{client} to Client
+}
+
+
+relationship ManyToOne {
+	ClientEmailList{client} to Client
+}
+
+relationship ManyToOne {
+	TemplateFields{templateDetails} to TemplateDetails
+}
+
+relationship OneToOne {
+	EmailProcessing{clientEmailList} to ClientEmailList
+}
+
+relationship ManyToOne {
+	EmailAttachment{emailProcessing} to EmailProcessing
+}
+
+relationship OneToOne {
+	EmailProcessingError to EmailProcessing
+}
+relationship OneToOne {
+	FileForOCRProcessing to EmailAttachment
+}
+
+relationship ManyToOne {
+	UploadFiles{client} to Client
+}
+
+relationship OneToOne {
+	FileForOCRProcessing to UploadFiles
+}
+
+relationship OneToOne {
+	Transaction to FileForOCRProcessing
+}
+relationship ManyToOne {
+	ClientDataOcr to Transaction
+}
+
+relationship OneToOne {
+	OcrProcessingError to Transaction
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+relationship ManyToOne {
+	Client{organizationsdetails} to OrganizationsDetails
+
+}
+
+// Set pagination options
+paginate * with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl

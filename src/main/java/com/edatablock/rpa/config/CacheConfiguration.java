@@ -38,6 +38,21 @@ public class CacheConfiguration {
             cm.createCache(com.edatablock.rpa.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.edatablock.rpa.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.edatablock.rpa.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.OrganizationsDetails.class.getName(), jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.OrgEmailConfig.class.getName(), jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.Client.class.getName(), jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.ClientEmailList.class.getName(), jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.TemplateDetails.class.getName(), jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.TemplateFields.class.getName(), jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.EmailProcessing.class.getName(), jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.EmailAttachment.class.getName(), jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.EmailProcessingError.class.getName(), jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.UploadFiles.class.getName(), jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.FileForOCRProcessing.class.getName(), jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.Transaction.class.getName(), jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.Transaction.class.getName() + ".clientDataOcrs", jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.OcrProcessingError.class.getName(), jcacheConfiguration);
+            cm.createCache(com.edatablock.rpa.domain.ClientDataOcr.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

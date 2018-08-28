@@ -1,0 +1,49 @@
+{
+    "name": "UploadFiles",
+    "fields": [
+        {
+            "fieldName": "fileName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fileExtension",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "uploadBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "uploadDateTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "uploadLocation",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "client",
+            "otherEntityName": "client",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "fileForOCRProcessing",
+            "otherEntityName": "fileForOCRProcessing",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "uploadFiles"
+        }
+    ],
+    "changelogDate": "20180828204809",
+    "entityTableName": "upload_files",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

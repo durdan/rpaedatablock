@@ -1,0 +1,40 @@
+{
+    "name": "EmailProcessingError",
+    "fields": [
+        {
+            "fieldName": "errorMessage",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "messageID",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "receiveFrom",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "receivedTime",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "emailProcessing",
+            "otherEntityName": "emailProcessing",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "emailProcessingError"
+        }
+    ],
+    "changelogDate": "20180828204808",
+    "entityTableName": "email_processing_error",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
